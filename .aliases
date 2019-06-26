@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# General
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lA'
+
+# Git
+alias g="git"
+
+# Kubernetes
+alias k='kubectl'
+alias ktx='kubectx'
+alias kns='kubens'
+alias kp='kubectl get pods'
+alias kdp='kubectl delete pod'
+alias kl='kubectl logs'
+alias kshell='kubectl exec -it'
+
+# VSCode
+alias code-k8s='code ~/go/src/k8s.io/kubernetes'
+alias code-argo='code ~/go/src/github.com/argoproj/argo'
+alias code-argo-cd='code ~/go/src/github.com/argoproj/argo-cd'
+alias code-argo-rollouts='code ~/go/src/github.com/argoproj/argo-rollouts'
+
+# cd
+alias cd-argo='cd ~/go/src/github.com/argoproj/argo'
+alias cd-argo-cd='cd ~/go/src/github.com/argoproj/argo-cd'
+alias cd-argo-rollouts='cd ~/go/src/github.com/argoproj/argo-rollouts'

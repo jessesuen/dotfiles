@@ -1,0 +1,22 @@
+# Disable the startup message
+startup_message off
+
+# Turn off that damn bell!
+vbell off
+
+# Set a large scrollback buffer
+defscrollback 32000
+
+# change the hardstatus settings to give an window list at the bottom of the
+# screen, with the time and date and with the current window highlighted
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]'
+
+# Disable freezing the screen
+bind s
+
+# Use an alternate screen (for programs like vim) to prevent content in scrollback buffer
+altscreen on
+
+#Scroll bars
+#termcapinfo xterm ti@:te@
