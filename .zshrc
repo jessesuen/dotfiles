@@ -1,28 +1,28 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$PATH
-
+source ~/.paths
+source ~/.aliases
 source ~/.exports
 
-# Path to your oh-my-zsh installation.
 export ZSH="/Users/jsuen/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-#ZSH_THEME="sunrise"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+#POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_STRATEGY=”truncate_from_right”
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+#POWERLEVEL9K_DIR_ETC_BACKGROUND='none'
+POWERLEVEL9K_DIR_ETC_FOREGROUND='white'
+#POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
+#POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='none'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='white'
+#POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -76,7 +76,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kube-ps1)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,6 +96,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-PROMPT=$PROMPT'$(kube_ps1) '
-source ~/.aliases
