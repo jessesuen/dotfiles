@@ -20,10 +20,10 @@ alias kshell='kubectl exec -it'
 # VSCode
 alias code-k8s='code ~/go/src/k8s.io/kubernetes'
 alias code-argo='code ~/go/src/github.com/argoproj/argo'
-alias code-argo-cd='code ~/go/src/github.com/argoproj/argo-cd'
-alias code-argo-rollouts='code ~/go/src/github.com/argoproj/argo-rollouts'
+alias code-argocd='code ~/go/src/github.com/argoproj/argo-cd'
+alias code-rollouts='code ~/go/src/github.com/argoproj/argo-rollouts'
 
 # cd
 alias cd-argo='cd ~/go/src/github.com/argoproj/argo'
-alias cd-argo-cd='cd ~/go/src/github.com/argoproj/argo-cd'
-alias cd-argo-rollouts='cd ~/go/src/github.com/argoproj/argo-rollouts'
+alias cd-argocd='cd ~/go/src/github.com/argoproj/argo-cd'
+alias cd-rollouts='cd ~/go/src/github.com/argoproj/argo-rollouts'

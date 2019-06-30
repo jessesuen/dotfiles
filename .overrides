@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+################################################################
+# Kubernetes Current Context/Namespace
+prompt_kubecontext() {
+  local kubectl_version="$(kubectl version --client 2>/dev/null)"
+  if [[ -n "$kubectl_version" ]]; then
+    local k8s_final_text="$(kubectl config view --minify=true -o jsonpath='{.contexts[0].context.cluster}/{.contexts[0].context.namespace}')"
+    "$1_prompt_segment" "$0" "$2" "darkblue" "white" "$k8s_final_text" "KUBERNETES_ICON"
+  fi
+}

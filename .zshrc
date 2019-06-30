@@ -1,35 +1,25 @@
-source ~/.paths
-source ~/.aliases
-source ~/.exports
+DOTFILEDIR=~/dotfiles
+
+source $DOTFILEDIR/.paths
+source $DOTFILEDIR/.aliases
+source $DOTFILEDIR/.exports
 
 export ZSH="/Users/jsuen/.oh-my-zsh"
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-#POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+DEFAULT_USER=$(whoami)
+
+# Powerlevel 9k
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir kubecontext vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_SHORTEN_STRATEGY=”truncate_from_right”
-
-#POWERLEVEL9K_DIR_ETC_BACKGROUND='none'
-POWERLEVEL9K_DIR_ETC_FOREGROUND='white'
-#POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
-POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
-#POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='none'
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='white'
-#POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -82,17 +72,4 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+source $DOTFILEDIR/.overrides
