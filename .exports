@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
-export TERM="xterm-256color"
-
 export KUBECTL_EXTERNAL_DIFF=colordiff
+
+# override TERM=screen when using GNU screen, which causes discoloration
+export TERM=xterm-256color
+
+# Directory coloring
+if [[ $OSTYPE = (darwin|freebsd)* ]]; then
+    export CLICOLOR=true
+    export LSCOLORS='exfxcxdxbxGxDxabagacad'
+elif [[ $OSTYPE = (linux)* ]]; then
+    export LS_OPTIONS='--color=auto'
+fi

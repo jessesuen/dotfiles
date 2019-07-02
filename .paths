@@ -9,5 +9,6 @@ pathmunge() {
     fi
   fi
 }
+
 pathmunge ~/bin
 pathmunge ~/go/bin

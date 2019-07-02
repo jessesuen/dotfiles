@@ -4,6 +4,7 @@
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
+alias diff='colordiff'
 
 # Git
 alias g="git"
@@ -27,3 +28,10 @@ alias code-rollouts='code ~/go/src/github.com/argoproj/argo-rollouts'
 alias cd-argo='cd ~/go/src/github.com/argoproj/argo'
 alias cd-argocd='cd ~/go/src/github.com/argoproj/argo-cd'
 alias cd-rollouts='cd ~/go/src/github.com/argoproj/argo-rollouts'
+
+# Support aliases
+alias support-pods='kubectl get pods --all-namespaces | egrep "^(kube-system|opa|monitoring)" | egrep -v "(Completed|Running)"'
+alias support-nodes='kubectl get nodes | grep -v Ready'
+
+# Misc
+alias whatismyip='dig @resolver1.opendns.com ANY myip.opendns.com +short'

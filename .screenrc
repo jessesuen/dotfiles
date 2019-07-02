@@ -7,6 +7,12 @@ vbell off
 # Set a large scrollback buffer
 defscrollback 32000
 
+# Support scroll bars in iTerm (works until window is switched)
+termcapinfo * ti@:te@
+
+# Use an alternate screen (for programs like vim) to prevent content in scrollback buffer
+altscreen on
+
 # change the hardstatus settings to give an window list at the bottom of the
 # screen, with the time and date and with the current window highlighted
 hardstatus alwayslastline
@@ -15,8 +21,5 @@ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u
 # Disable freezing the screen
 bind s
 
-# Use an alternate screen (for programs like vim) to prevent content in scrollback buffer
-altscreen on
-
-#Scroll bars
-#termcapinfo xterm ti@:te@
+# Always start `screen` with UTF-8 enabled (`screen -U`)
+defutf8 on

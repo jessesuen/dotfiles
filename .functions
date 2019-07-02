@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Decode a kubernetes secret
+kdecode() {
+    if [ -z "$1" ]; then
+       echo "Usage: kdecode SECRETNAME"
+       return 1
+    fi
+    kubectl get secret -o json $@ | jq -r '.data | map_values(@base64d)'
+}
+
+# https://github.com/jessfraz/dotfiles/blob/master/.functions
+# Determine size of a file or total size of a directory
+fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh
+	else
+		local arg=-sh
+	fi
+	# shellcheck disable=SC2199
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@"
+	else
+		du $arg -- .[^.]* *
+	fi
+}
