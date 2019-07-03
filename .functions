@@ -2,11 +2,68 @@
 
 # Decode a kubernetes secret
 kdecode() {
-    if [ -z "$1" ]; then
-       echo "Usage: kdecode SECRETNAME"
-       return 1
+	if [ -z "$1" ]; then
+		echo "Usage: kdecode SECRETNAME"
+		return 1
     fi
     kubectl get secret -o json $@ | jq -r '.data | map_values(@base64d)'
+}
+
+# `kubectl get pods` with namespace column
+_kp-with-namespace() {
+	ns=$1
+	shift
+	out=$(kubectl get pods -n $ns $@)
+	header="NAMESPACE $(echo $out | head -1)"
+	rest=$(echo $out | tail -n +2 | sed "s/^/${ns} /")
+	echo "${header}\n${rest}"
+}
+
+# kubectl get pods for only system namespaces
+# (should be faster than `kubectl get pods --all-namespaces` on large clusters)
+kp-system() {
+	all=""
+	for ns in "kube-system" "opa" "monitoring"; do
+		out=$(_kp-with-namespace $ns $@)
+		all="${all}\n${out}"
+	done
+	echo "${all}" | grep -v NAMESPACE | grep -v Completed | column -t
+}
+
+# Common first things to look for during troubleshooting
+k-troubleshoot() {
+	echo "DaemonSets:"
+	kubectl get ds --all-namespaces
+	echo
+	echo "Pod Restarts:"
+	kp-system -o wide | egrep -v " (0|1|2) " | column -t
+	echo
+	echo "Unready Nodes:"
+	kubectl get nodes -o wide | grep -v Ready
+}
+
+# `kubectl get pods` with top information
+ktop-pods() {
+	args=()
+	orig_args=()
+	while test ${#} -gt 0; do
+		orig_args+=("$1")
+		# Remove -o wide option from `kubectl top pods` since it is unsupported by that command
+		if [ "$1" = "-o" ]; then
+			shift
+			orig_args+=("$1")
+			shift
+			continue
+		fi
+		args+=("$1")
+		shift
+	done
+	join <(kubectl top pods ${args[@]}) <(kubectl get pods ${orig_args[@]}) | column -t
+}
+
+# `kubectl get nodes` with top information
+ktop-nodes() {
+	join <(kubectl top nodes) <(kubectl get nodes $@) | column -t
 }
 
 # https://github.com/jessfraz/dotfiles/blob/master/.functions

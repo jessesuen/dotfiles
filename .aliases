@@ -17,21 +17,13 @@ alias kp='kubectl get pods'
 alias kdp='kubectl delete pod'
 alias kl='kubectl logs'
 alias kshell='kubectl exec -it'
+alias kdesc='kubectl describe pod'
 
 # VSCode
 alias code-k8s='code ~/go/src/k8s.io/kubernetes'
 alias code-argo='code ~/go/src/github.com/argoproj/argo'
 alias code-argocd='code ~/go/src/github.com/argoproj/argo-cd'
 alias code-rollouts='code ~/go/src/github.com/argoproj/argo-rollouts'
-
-# cd
-alias cd-argo='cd ~/go/src/github.com/argoproj/argo'
-alias cd-argocd='cd ~/go/src/github.com/argoproj/argo-cd'
-alias cd-rollouts='cd ~/go/src/github.com/argoproj/argo-rollouts'
-
-# Support aliases
-alias support-pods='kubectl get pods --all-namespaces | egrep "^(kube-system|opa|monitoring)" | egrep -v "(Completed|Running)"'
-alias support-nodes='kubectl get nodes | grep -v Ready'
 
 # Misc
 alias whatismyip='dig @resolver1.opendns.com ANY myip.opendns.com +short'

@@ -12,3 +12,5 @@ pathmunge() {
 
 pathmunge ~/bin
 pathmunge ~/go/bin
+
+CDPATH=.:~:~/go/src/github.com/argoproj
