@@ -6,9 +6,9 @@ export KUBECTL_EXTERNAL_DIFF=colordiff
 export TERM=xterm-256color
 
 # Directory coloring
-if [[ $OSTYPE = (darwin|freebsd)* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]] ; then
     export CLICOLOR=true
     export LSCOLORS='exfxcxdxbxGxDxabagacad'
-elif [[ $OSTYPE = (linux)* ]]; then
+elif [[ "$OSTYPE" == "linux"* ]]; then
     export LS_OPTIONS='--color=auto'
 fi

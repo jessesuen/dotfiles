@@ -9,25 +9,24 @@ kdecode() {
     kubectl get secret -o json $@ | jq -r '.data | map_values(@base64d)'
 }
 
-# `kubectl get pods` with namespace column
-_kp-with-namespace() {
-	ns=$1
-	shift
-	out=$(kubectl get pods -n $ns $@)
-	header="NAMESPACE $(echo $out | head -1)"
-	rest=$(echo $out | tail -n +2 | sed "s/^/${ns} /")
-	echo "${header}\n${rest}"
+# kubectl get pods for only system namespaces
+kp-system() {
+	out=$(kubectl get pods --all-namespaces $@ | grep -v Completed)
+	header=$(printf "${out}" | head -1)
+	rest=$(printf "${out}" | egrep -e "^(kube-system|monitoring|opa)")
+	printf "${header}\n${rest}" | column -t 2>/dev/null
 }
 
-# kubectl get pods for only system namespaces
-# (should be faster than `kubectl get pods --all-namespaces` on large clusters)
-kp-system() {
-	all=""
-	for ns in "kube-system" "opa" "monitoring"; do
-		out=$(_kp-with-namespace $ns $@)
-		all="${all}\n${out}"
-	done
-	echo "${all}" | grep -v NAMESPACE | grep -v Completed | column -t
+# Show only crashing pods (above some threshold)
+kp-crashing() {
+	threshold=$1
+	if [ -z "$threshold" ]; then
+	    threshold="10"
+	fi
+	out=$(kp-system -o wide)
+	header=$(printf "${out}" | head -1)
+	rest=$(printf "${out}" | tail -n +2 | awk "\$5 > ${threshold} {print \$0}")
+	printf "${header}\n${rest}" | column -t 2>/dev/null
 }
 
 # Common first things to look for during troubleshooting
@@ -36,13 +35,13 @@ k-troubleshoot() {
 	kubectl get ds --all-namespaces
 	echo
 	echo "Pod Restarts:"
-	kp-system -o wide | egrep -v " (0|1|2) " | column -t
+	kp-crashing
 	echo
-	echo "Unready Nodes:"
-	kubectl get nodes -o wide | grep -v Ready
+	echo "Nodes NotReady:"
+	kubectl get nodes -o wide | grep -v " Ready "
 }
 
-# `kubectl get pods` with top information
+# `kubectl get pods` joined with top information
 ktop-pods() {
 	args=()
 	orig_args=()
@@ -61,7 +60,7 @@ ktop-pods() {
 	join <(kubectl top pods ${args[@]}) <(kubectl get pods ${orig_args[@]}) | column -t
 }
 
-# `kubectl get nodes` with top information
+# `kubectl get nodes` joined with top information
 ktop-nodes() {
 	join <(kubectl top nodes) <(kubectl get nodes $@) | column -t
 }
