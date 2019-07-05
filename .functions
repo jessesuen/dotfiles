@@ -13,31 +13,29 @@ kdecode() {
 kp-system() {
 	out=$(kubectl get pods --all-namespaces $@ | grep -v Completed)
 	header=$(printf "${out}" | head -1)
-	rest=$(printf "${out}" | egrep -e "^(kube-system|monitoring|opa)")
-	printf "${header}\n${rest}" | column -t 2>/dev/null
+	rest=$(printf "${out}" | egrep -e "^(kube-system|iks-system|monitoring|opa)")
+	printf "${header}\n${rest}\n" | column -t 2>/dev/null
 }
 
 # Show only crashing pods (above some threshold)
 kp-crashing() {
 	threshold=$1
 	if [ -z "$threshold" ]; then
-	    threshold="10"
+	    threshold=10
 	fi
 	out=$(kp-system -o wide)
 	header=$(printf "${out}" | head -1)
-	rest=$(printf "${out}" | tail -n +2 | awk "\$5 > ${threshold} {print \$0}")
-	printf "${header}\n${rest}" | column -t 2>/dev/null
+	rest=$(printf "${out}" | tail -n +2 | awk "\$5 > ${threshold} {print ;}")
+	printf "${header}\n${rest}\n" | column -t 2>/dev/null
 }
 
 # Common first things to look for during troubleshooting
 k-troubleshoot() {
 	echo "DaemonSets:"
 	kubectl get ds --all-namespaces
-	echo
-	echo "Pod Restarts:"
+	echo "\nPod Restarts:"
 	kp-crashing
-	echo
-	echo "Nodes NotReady:"
+	echo "\nNodes NotReady:"
 	kubectl get nodes -o wide | grep -v " Ready "
 }
 
@@ -45,10 +43,14 @@ k-troubleshoot() {
 ktop-pods() {
 	args=()
 	orig_args=()
+	join_field=1
 	while test ${#} -gt 0; do
 		orig_args+=("$1")
-		# Remove -o wide option from `kubectl top pods` since it is unsupported by that command
-		if [ "$1" = "-o" ]; then
+		if [ "$1" = "--all-namespaces" ]; then 
+			# if --all-namespaces is specified, we need to join on field 2 instead of 1
+			join_field=2
+		elif [ "$1" = "-o" ]; then
+			# Remove -o wide option from `kubectl top pods` since it is unsupported by that command
 			shift
 			orig_args+=("$1")
 			shift
@@ -57,7 +59,12 @@ ktop-pods() {
 		args+=("$1")
 		shift
 	done
-	join <(kubectl top pods ${args[@]}) <(kubectl get pods ${orig_args[@]}) | column -t
+	out=$(join -j ${join_field} <(kubectl top pods ${args[@]}) <(kubectl get pods ${orig_args[@]}))
+	if [ $join_field -eq 2 ]; then
+		# join swaps the columns. restore original order
+		out=$(printf $out | awk ' { t = $1; $1 = $2; $2 = t; print; } ')
+	fi
+	printf $out | column -t
 }
 
 # `kubectl get nodes` joined with top information
