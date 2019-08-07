@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export GOPATH=~/go
 export KUBECTL_EXTERNAL_DIFF=colordiff
 
 # override TERM=screen when using GNU screen, which causes discoloration
