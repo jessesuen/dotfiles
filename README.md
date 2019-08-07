@@ -3,7 +3,7 @@
 # Installation
 
 ```shell
-git clone git@github.com:jessesuen/dotfiles.git ~/dotfiles
+git clone https://github.com/jessesuen/dotfiles.git ~/dotfiles
 cd
 ln -s dotfiles/.screenrc
 ln -s dotfiles/.vimrc
@@ -19,10 +19,10 @@ sudo echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh
 
 # Faster version of powerlevel9k
-git clone git@github.com:romkatv/powerlevel10k.git ~/powerlevel10k
+git clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
 brew tap homebrew/cask-fonts
-brew install font-hack-nerd-font
+brew cask install font-hack-nerd-font
 
 # ZSH add-ons
 brew install zsh-completions
