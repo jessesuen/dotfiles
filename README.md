@@ -19,15 +19,12 @@ sudo echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh
 
 # Faster version of powerlevel9k
-git clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-
-brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
+brew install romkatv/powerlevel10k/powerlevel10k
+# install MesloLGS NF
+p10k configure
 
 # ZSH add-ons
-brew install zsh-completions
-brew install zsh-autosuggestions
-brew install zsh-syntax-highlighting
+brew install zsh-completions zsh-autosuggestions zsh-syntax-highlighting
 chmod go-w '/usr/local/share'
 rm -f ~/.zcompdump; compinit
 ```
@@ -36,11 +33,20 @@ rm -f ~/.zcompdump; compinit
 
 Preferences -> Profiles -> Terminal -> Save lines to scrollback when an app status bar is present
 
-Preferences -> Profiles -> Text -> Change Font -> Hack Nerd Font
+Preferences -> Profiles -> Text -> Font -> MesloLGS NF
 
 ## VSCode Notes
 ```json
 {
-    "terminal.integrated.fontFamily": "Hack Nerd Font"
+    "terminal.integrated.fontFamily": "MesloLGS NF"
 }
+```
+
+## Other 
+```shell
+brew install \
+    screen
+    kubectl
+    kubectx
+    vim
 ```
