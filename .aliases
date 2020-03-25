@@ -18,6 +18,8 @@ alias kdp='kubectl delete pod'
 alias kl='kubectl logs'
 alias kshell='kubectl exec -it'
 alias kdesc='kubectl describe pod'
+alias kevents='kubectl get events --sort-by=.metadata.creationTimestamp'
+alias kro='kubectl argo rollouts'
 
 # VSCode
 alias code-k8s='code ~/go/src/k8s.io/kubernetes'

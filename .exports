@@ -13,3 +13,5 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
 elif [[ "$OSTYPE" == "linux"* ]]; then
     export LS_OPTIONS='--color=auto'
 fi
+
+export GOPATH=~/go
