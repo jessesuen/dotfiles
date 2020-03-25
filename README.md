@@ -41,12 +41,3 @@ Preferences -> Profiles -> Text -> Font -> MesloLGS NF
     "terminal.integrated.fontFamily": "MesloLGS NF"
 }
 ```
-
-## Other 
-```shell
-brew install \
-    screen
-    kubectl
-    kubectx
-    vim
-```
