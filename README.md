@@ -14,9 +14,6 @@ ln -s dotfiles/.zshrc
 
 ```shell
 brew install zsh
-sudo echo "/usr/local/bin/zsh" >> /etc/shells
-# Change default shell to brew's zsh
-chsh -s /usr/local/bin/zsh
 
 # Faster version of powerlevel9k
 brew install romkatv/powerlevel10k/powerlevel10k
