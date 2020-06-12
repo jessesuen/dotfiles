@@ -3,7 +3,6 @@
 ```
 git
 golang
-dep
 screen
 vim
 kubectl
@@ -14,7 +13,6 @@ kustomize
 
 # Minikube
 ```
-brew install minikube
-brew install docker-machine-driver-hyperkit
+brew install minikube hyperkit
 minikube config set vm-driver hyperkit
 ```
