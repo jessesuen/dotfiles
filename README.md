@@ -15,15 +15,15 @@ ln -s dotfiles/.zshrc
 ```shell
 brew install zsh
 
-# Faster version of powerlevel9k
-brew install romkatv/powerlevel10k/powerlevel10k
-# install MesloLGS NF
-p10k configure
-
 # ZSH add-ons
 brew install zsh-completions zsh-autosuggestions zsh-syntax-highlighting
 chmod go-w '/usr/local/share'
 rm -f ~/.zcompdump; compinit
+
+# Faster version of powerlevel9k
+brew install romkatv/powerlevel10k/powerlevel10k
+# install MesloLGS NF
+p10k configure
 ```
 
 ## iTerm2 Notes
