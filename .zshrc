@@ -19,10 +19,11 @@ setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt interactivecomments    # enable comments in command-line
 
 # enable zsh-completions
-autoload -Uz compinit
-compinit
-typeset -U fpath
-fpath=(/usr/local/share/zsh-completions $fpath)
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  autoload -Uz compinit
+  compinit
+fi
 
 # zsh autosuggestions and syntax-highlighting
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh

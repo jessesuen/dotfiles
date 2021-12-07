@@ -9,6 +9,10 @@ kubectl
 kubectx
 kind
 kustomize
+stern
+jq
+helm
+awscli
 ```
 
 # Minikube
