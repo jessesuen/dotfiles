@@ -7,16 +7,11 @@ screen
 vim
 kubectl
 kubectx
-kind
+k3d
+minikube
 kustomize
 stern
 jq
 helm
 awscli
-```
-
-# Minikube
-```
-brew install minikube hyperkit
-minikube config set vm-driver hyperkit
 ```

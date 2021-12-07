@@ -58,7 +58,7 @@ POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="yellow"
 #   fi
 # }
 
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # override colors of powerlevel10k
 prompt_kubecontext() {
