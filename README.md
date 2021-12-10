@@ -20,13 +20,13 @@ brew install zsh
 
 # ZSH add-ons
 brew install zsh-completions zsh-autosuggestions zsh-syntax-highlighting
-chmod go-w /opt/homebrew/share
+chmod go-w $(brew --prefix)/share
 rm -f ~/.zcompdump; compinit
 
 # Faster version of powerlevel9k
 brew install romkatv/powerlevel10k/powerlevel10k
 # install MesloLGS NF
-# NOTE before running this, ensure iTerm2 is already installed so it can modify the iTerm install
+# NOTE before running this, ensure iTerm2 is already installed so p10k can modify the iTerm2 configuration
 p10k configure
 ```
 
