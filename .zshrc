@@ -31,3 +31,8 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Ctrl+U behaves like bash
 bindkey \^U backward-kill-line
+
+# completions
+source <(kubectl completion zsh)
+# since k is aliased to kubectl
+compdef __start_kubectl k

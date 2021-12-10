@@ -5,13 +5,17 @@ git
 golang
 screen
 vim
+colordiff
+jq
+```
+
+## Kubernetes
 kubectl
 kubectx
 k3d
 minikube
 kustomize
 stern
-jq
 helm
 awscli
 ```
