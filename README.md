@@ -8,9 +8,8 @@ cd
 ln -s dotfiles/.screenrc
 ln -s dotfiles/.vimrc
 ln -s dotfiles/.zshrc
-ln -s dotfiles/.gitignore
 
-git config --global core.excludesfile ~/.gitignore
+git config --global core.excludesfile ~/dotfiles/.gitignore
 ```
 
 ## Z-Shell Notes
@@ -20,14 +19,13 @@ brew install zsh
 
 # ZSH add-ons
 brew install zsh-completions zsh-autosuggestions zsh-syntax-highlighting
-chmod go-w $(brew --prefix)/share
-rm -f ~/.zcompdump; compinit
+# chmod go-w $(brew --prefix)/share
+# rm -f ~/.zcompdump; compinit
 
-# Faster version of powerlevel9k
-brew install romkatv/powerlevel10k/powerlevel10k
-# install MesloLGS NF
-# NOTE before running this, ensure iTerm2 is already installed so p10k can modify the iTerm2 configuration
-p10k configure
+# prompt theme engine
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+# Nerd fonts
+oh-my-posh font install meslo
 ```
 
 ## iTerm2 Notes

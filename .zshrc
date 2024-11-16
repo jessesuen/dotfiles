@@ -3,7 +3,7 @@ source $DOTFILEDIR/.paths
 source $DOTFILEDIR/.aliases
 source $DOTFILEDIR/.exports
 source $DOTFILEDIR/.functions
-source $DOTFILEDIR/.powerlevel9k
+#source $DOTFILEDIR/.powerlevel9k
 
 # zsh history configuration
 HISTFILE=~/.zsh_history
@@ -33,3 +33,7 @@ source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Ctrl+U behaves like bash
 bindkey \^U backward-kill-line
+
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config ~/dotfiles/ohmyposh/base.yaml)"
+fi
