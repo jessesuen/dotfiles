@@ -22,6 +22,9 @@ brew install zsh-completions zsh-autosuggestions zsh-syntax-highlighting
 # chmod go-w $(brew --prefix)/share
 # rm -f ~/.zcompdump; compinit
 
+# Nerd Fonts
+brew install font-hack-nerd-font
+
 # prompt theme engine
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 # Nerd fonts
