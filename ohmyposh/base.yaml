@@ -1,3 +1,5 @@
+# Modified version of the powerlevel10k_rainbow theme
+# https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_rainbow.omp.json
 $schema: >-
   https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 blocks:
@@ -6,7 +8,7 @@ blocks:
     segments:
       - background: '#d3d7cf'
         foreground: '#000000'
-        leading_diamond: ╭─
+        # leading_diamond: ╭─
         style: diamond
         template: ' {{ if .WSL }}WSL at {{ end }}{{.Icon}} '
         type: os
@@ -146,7 +148,7 @@ blocks:
         invert_powerline: true
         style: diamond
         template: ' {{ .CurrentDate | date .Format }}  '
-        trailing_diamond: ─╮
+        # trailing_diamond: ─╮
         type: time
     type: prompt
   - alignment: left
@@ -154,13 +156,14 @@ blocks:
     segments:
       - foreground: '#d3d7cf'
         style: plain
-        template: ╰─
+        # template: ╰─
+        template: $
         type: text
     type: prompt
   - segments:
       - foreground: '#d3d7cf'
         style: plain
-        template: ─╯
+        # template: ─╯
         type: text
     type: rprompt
 console_title_template: '{{ .Shell }} in {{ .Folder }}'
